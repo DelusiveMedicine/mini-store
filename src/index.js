@@ -1,8 +1,11 @@
 // import "bootstrap/dist/css/bootstrap.css";
 import "./style.scss";
+import Navigation from "./components/Navigation";
+import ProductTable from "./components/ProductTable";
+import Form from "./components/Form";
 
-import AdminTable from "./components/Admin_table";
+const navigation = new Navigation();
+const productTable = new ProductTable();
+const form = new Form();
 
-const adminTable = new AdminTable();
-
-adminTable.getProducts();
+productTable.getProducts();

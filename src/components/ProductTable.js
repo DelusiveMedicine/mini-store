@@ -1,9 +1,7 @@
-export default class AdminTable {
+export default class ProductTable {
   constructor() {
     this.product = document.querySelector(".product");
     this.API = "https://5db95beaeddc81001495eb0f.mockapi.io/api/products";
-    this.createBtn = document.getElementById("create");
-    // this.createBtn.addEventListener("click", form.handleCreate);
   }
 
   getProducts = () => {
@@ -19,7 +17,7 @@ export default class AdminTable {
     const productList = list.reduce(
       (acc, item) =>
         acc +
-        `<tr><td>${item.id}</td><td>${item.name}</td><td>${item.desc}</td><td>${item.price}</td><td>${item.available}</td><td><img src=${item.img} alr=${item.name} width="50"></td><tr>`,
+        `<tr><th>${item.id}</th><td>${item.name}</td><td>${item.desc}</td><td>${item.price}</td><td>${item.available}</td><td><img src=${item.img} alr=${item.name} width="50"></td><tr>`,
       ""
     );
     this.product.innerHTML = productList;
