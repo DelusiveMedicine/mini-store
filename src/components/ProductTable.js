@@ -1,11 +1,18 @@
+import Handlebars from "handlebars";
+import { API } from "../constants";
+
 export default class ProductTable {
   constructor() {
     this.product = document.querySelector(".product");
-    this.API = "https://5db95beaeddc81001495eb0f.mockapi.io/api/products";
+    this.productContainer = document
+      .getElementById("product-container")
+      .innerHTML.trim();
+    this.template = Handlebars.compile(this.productContainer);
+    this.productList = "";
   }
 
   getProducts = () => {
-    fetch(this.API)
+    fetch(API)
       .then(res => {
         if (res.ok) return res.json();
         throw Error(response.status + " " + response.statusText);
@@ -14,12 +21,8 @@ export default class ProductTable {
       .catch(error => console.log(`ERROR ${error}`));
   };
   showProducts = list => {
-    const productList = list.reduce(
-      (acc, item) =>
-        acc +
-        `<tr><th>${item.id}</th><td>${item.name}</td><td>${item.desc}</td><td>${item.price}</td><td>${item.available}</td><td><img src=${item.img} alr=${item.name} width="50"></td><tr>`,
-      ""
-    );
-    this.product.innerHTML = productList;
+    this.productList = list;
+    const markup = list.reduce((acc, el) => acc + this.template(el), "");
+    this.product.innerHTML = markup;
   };
 }

@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const SpriteLoaderPlugin = require("svg-sprite-loader/plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -23,11 +24,18 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", MiniCssExtractPlugin.loader, "css-loader"]
-      }
+      },
       // {
-      //   test: /\.scss$/,
-      //   use: ["style-loader", MiniCssExtractPlugin.loader, "css-loader"]
-      // }
+      //   test: /\.(png|svg|jpg|gif)$/,
+      //   use: ["file-loader"]
+      // },
+      {
+        test: /\.svg$/,
+        loader: "svg-sprite-loader",
+        options: {
+          extract: true
+        }
+      }
     ]
   },
   plugins: [
@@ -39,6 +47,7 @@ module.exports = {
       hash: true,
       template: "./src/index.html",
       filename: "index.html"
-    })
+    }),
+    new SpriteLoaderPlugin()
   ]
 };

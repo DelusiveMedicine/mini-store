@@ -46,7 +46,31 @@
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody class="product"></tbody>
+              <tbody class="product">
+                <template id="product-container"
+                  ><tr>
+                    <th>{{ id }}</th>
+                    <td>{{ name }}</td>
+                    <td>{{ desc }}</td>
+                    <td>{{ price }}</td>
+                    <td>
+                      {{#if available}}
+                      <svg class="menu__icon" width="14" height="14">
+                        <use href="sprite.svg#symbols_check-mark"></use>
+                      </svg>
+                      {{else}}
+                      <svg class="menu__icon" width="14" height="14">
+                        <use href="sprite.svg#symbols_close-cross"></use>
+                      </svg>
+                      {{/if}}
+                    </td>
+                    <td>
+                      <img src="{{ img }}" alr="{{ name }}" width="50" />
+                    </td>
+                  </tr>
+                  <tr></tr
+                ></template>
+              </tbody>
             </table>
           </div>
         </div>
@@ -54,12 +78,12 @@
       <div class="container" id="product-form" hidden>
         <div class="row">
           <form class="w-50">
-            <div class="form-group row">
+            <div class="form-group row" id="product-code" hidden>
               <div class="col col-lg-3">
                 <label>Code</label>
               </div>
               <div class="col">
-                <input type="text" class="form-control" />
+                <input type="text" name="code" class="form-control" />
               </div>
             </div>
 
@@ -67,7 +91,9 @@
               <div class="col col-lg-3">
                 <label>Name</label>
               </div>
-              <div class="col"><input type="text" class="form-control" /></div>
+              <div class="col">
+                <input type="text" name="name" class="form-control" required />
+              </div>
             </div>
 
             <div class="form-group row">
@@ -75,7 +101,12 @@
                 <label>Price</label>
               </div>
               <div class="col">
-                <input type="number" class="form-control" />
+                <input
+                  type="number"
+                  name="price"
+                  class="form-control"
+                  required
+                />
               </div>
             </div>
 
@@ -84,7 +115,7 @@
                 <label>Available</label>
               </div>
               <div class="col">
-                <input type="checkbox" />
+                <input type="checkbox" name="available" />
               </div>
             </div>
 
@@ -95,8 +126,10 @@
               <div class="col">
                 <input
                   type="url"
+                  name="img"
                   class="form-control"
                   placeholder="Enter image URL"
+                  required
                 />
               </div>
             </div>
@@ -106,12 +139,19 @@
                 <label>Description</label>
               </div>
               <div class="col">
-                <textarea class="form-control" rows="6"></textarea>
+                <textarea
+                  name="desc"
+                  class="form-control"
+                  rows="6"
+                  required
+                ></textarea>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary" id="form-button">
+                  Save
+                </button>
               </div>
             </div>
           </form>
