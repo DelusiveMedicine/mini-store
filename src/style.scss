@@ -1,0 +1,24 @@
+@import "~bootstrap/scss/bootstrap";
+
+.action-button {
+  border: none;
+  background-color: transparent;
+  width: 14px;
+  height: 14px;
+}
+
+#edit-button {
+  background: url(https://image.flaticon.com/icons/svg/61/61456.svg) no-repeat
+    center;
+  background-size: 14px;
+}
+
+#delete-button {
+  background: url(https://image.flaticon.com/icons/svg/64/64581.svg) no-repeat
+    center;
+  background-size: 14px;
+}
+
+.center-text {
+  text-align: center;
+}

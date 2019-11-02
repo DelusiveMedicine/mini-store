@@ -11,6 +11,20 @@ export default class Form {
     this.newProduct = { available: false };
   }
 
+  getProduct = id => {
+    fetch(`${API}/${id}`)
+      .then(res => {
+        if (res.ok) return res.json();
+        throw Error(response.status + " " + response.statusText);
+      })
+      .then(data => this.showProduct(data))
+      .catch(error => console.log(`ERROR ${error}`));
+  };
+
+  showProduct = obj => {
+    console.log(obj);
+  };
+
   handleSubmit = async event => {
     event.preventDefault();
     await fetch(API, {
@@ -21,7 +35,10 @@ export default class Form {
       },
       body: JSON.stringify(this.newProduct)
     })
-      .then(this.getProducts)
+      .then(res => {
+        if (res.ok) return this.getProducts;
+        throw Error(response.status + " " + response.statusText);
+      })
       .catch(error => console.log(`ERROR ${error}`));
     this.showTable();
   };
@@ -32,9 +49,13 @@ export default class Form {
     const value = target.value;
     this.newProduct[name] = value;
     if (this.newProduct.available) this.newProduct.available = true;
+    if (name === "img") this.validateImage(value);
+  };
+
+  validateImage = url => {
     const pattern = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
 
-    if (name === "img" && !value.match(pattern)) {
+    if (!url.match(pattern)) {
       alert("Please, enter valid URL");
     }
   };
