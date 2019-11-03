@@ -19,6 +19,32 @@
   background-size: 14px;
 }
 
+#cart-button {
+  height: 40px;
+  padding-left: 40px;
+  position: relative;
+}
+
+#cart-button::before {
+  content: "";
+  position: absolute;
+  left: 10%;
+  top: 30%;
+  background: url(https://image.flaticon.com/icons/svg/60/60992.svg) no-repeat
+    left;
+  background-size: 16px 16px;
+  width: 16px;
+  height: 16px;
+}
+
 .center-text {
   text-align: center;
+}
+
+.navigation-top {
+  padding: 50px 0;
+}
+
+.navigation-bottom {
+  margin-bottom: 50px;
 }
