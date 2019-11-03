@@ -1,7 +1,7 @@
 {
   "name": "mini-store",
   "version": "1.0.0",
-  "description": "Native JS, Bootstrap 4, Handlebars, Moustache",
+  "description": "Native JS, Webpack, Bootstrap 4, Handlebars",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
