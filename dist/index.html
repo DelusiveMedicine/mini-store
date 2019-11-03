@@ -16,7 +16,9 @@
           </button>
         </div>
         <div class="col-auto">
-          <button type="button" class="btn btn-primary">Customer</button>
+          <button type="button" class="btn btn-primary" id="customer-button">
+            Customer
+          </button>
         </div>
       </div>
       <div class="row justify-content-end">
@@ -94,12 +96,12 @@
       <div class="container" id="product-form" hidden>
         <div class="row">
           <form class="w-50">
-            <div class="form-group row" id="product-code" hidden>
+            <div class="form-group row" id="product-code">
               <div class="col col-lg-3">
                 <label>Code</label>
               </div>
               <div class="col">
-                <input type="text" name="code" class="form-control" />
+                <input type="text" name="code" class="form-control" disabled />
               </div>
             </div>
 
@@ -131,7 +133,7 @@
                 <label>Available</label>
               </div>
               <div class="col">
-                <input type="checkbox" name="available" />
+                <input type="checkbox" name="available" id="available" />
               </div>
             </div>
 
@@ -171,6 +173,33 @@
               </div>
             </div>
           </form>
+        </div>
+      </div>
+      <div class="container" id="product-list" hidden>
+        <div class="row justify-content-center">
+          <ul class="list-group w-50" id="product-list-container">
+            <template id="product-list-items">
+              <li class="list-group-item ">
+                <div class="row justify-content-between">
+                  <div class="col-auto">
+                    <img src="{{ img }}" alr="{{ name }}" width="50" />
+                  </div>
+                  <div class="col-auto">
+                    <h3>{{ name }}</h3>
+                    <p>{{ desc }}</p>
+                  </div>
+                  <div class="col-2 d-flex flex-column justify-content-between">
+                    <span>$ {{ price }}</span
+                    ><button class="btn btn-primary">
+                      <svg class="menu__icon" width="14" height="14">
+                        <use href="sprite.svg#icons_plus"></use>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </li>
+            </template>
+          </ul>
         </div>
       </div>
     </div>
