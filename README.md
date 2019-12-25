@@ -1,6 +1,6 @@
 # mini-store
 
-Native JS, Bootstrap 4, Handlebars, Moustache
+ECMAScript 6, Webpack, Bootstrap, Handlebars
 
-#link
-http://delusivemedicine.github.io/mini-store/dist/index.html
+# link
+http://delusivemedicine.github.io/mini-store/dist
