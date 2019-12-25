@@ -43,33 +43,12 @@ export default class Form {
     });
   };
 
-  handleSubmit = async event => {
+  handleSubmit = event => {
     event.preventDefault();
-    if (this.newProduct.id) return this.handleUpdate();
-    await fetch(API, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(this.newProduct)
-    })
-      .then(res => {
-        if (res.ok) {
-          this.getCustomerProducts();
-          return this.getProducts();
-        }
-        throw Error(res.status + " " + res.statusText);
-      })
-      .catch(error => console.log(`ERROR ${error}`));
-
-    this.showTable();
-  };
-
-  handleUpdate = async () => {
     const id = this.newProduct.id;
-    await fetch(`${API}/${id}`, {
-      method: "PUT",
+    const method = id ? "PUT" : "POST";
+    fetch(`${API}/${id}`, {
+      method: method,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
@@ -80,8 +59,8 @@ export default class Form {
         if (res.ok) return this.getProducts();
         throw Error(res.status + " " + res.statusText);
       })
+      .then(this.showTable())
       .catch(error => console.log(`ERROR ${error}`));
-    this.showTable();
   };
 
   handleChange = event => {
